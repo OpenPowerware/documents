@@ -87,7 +87,8 @@ commit之后可以推送到自己的远程仓库。
 
 **（2）openpowerware fork到自己的仓之后，可以用github网页上的sync功能与源仓同步。openpowerware这个branch即使在自己的仓也不能自己修改，否则sync的时候会出现冲突。**
 
-**（3）pr前需要在硬件上完成测试，并遵从rt-thread的代码规范。可以用下面这个formatting tool 来自动格式化：**[https://github.com/mysterywolf/formatting](https://github.com/mysterywolf/formatting)。**注意只需要format改动的代码文件，没有改动的文件不需要formmat，否则会导致copyright栏的时间出错。**
+**（3）pr前需要在硬件上完成测试，并遵从rt-thread的代码规范。https://github.com/OpenPowerware/rt-thread/blob/openpowerware/documentation/contribution_guide/coding_style_cn.md
+可以用下面这个formatting tool 来自动格式化：**[https://github.com/mysterywolf/formatting](https://github.com/mysterywolf/formatting)。**注意只需要format改动的代码文件，没有改动的文件不需要formmat，否则会导致copyright栏的时间出错。**
 
 **（4）以上clone操作均基于linux系统。如果你使用linux，请直接用git命令行操作。**
 
