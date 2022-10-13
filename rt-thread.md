@@ -9,7 +9,7 @@
 
 # fork仓库
 
-首先上github网站
+首先上github网站，登录自己注册的账号，然后进入以下链接
 
 [https://github.com/OpenPowerware/rt-thread](https://github.com/OpenPowerware/rt-thread)
 
@@ -17,7 +17,7 @@
 
 ![fork](figures/fork.png)
 
-注意勾选copy the openpowerware branch only。随后点击create fork。这里对我们仓库的分支作以下说明：
+注意勾选copy the openpowerware branch only（其余分支是管理员分支，不需要fork）。随后点击create fork。这里对我们仓库的分支作以下说明：
 
 <aside>
 💡 目前我们的仓库共有三个主要的branch，分别是
@@ -35,7 +35,7 @@
 
 ## 1. clone仓库到本地
 
-在fork好之后就能在自己的主页看到rt-thread的仓库了，比如我的名字是felixQi7，就能看到如下所示的仓库，点击Code，再点击2所在位置处的复制图标，这个url之后的步骤会用到。
+在fork好之后就能在自己的主页看到rt-thread的仓库了，比如我以账户名为felixQi7举例。此时就能看到如下所示的仓库，点击Code，再点击2所在位置处的复制图标，这个url之后的步骤会用到。
 
 ![clone1](figures/clone1.png)
 
@@ -53,7 +53,7 @@
 
 ## 2. 创建自己的branch并开发
 
-如下图所示，点击new branch，然后填入开发分支的名字（最好是起一个有意义的名字），点击create branch即可
+注意一定不要在Openpowerware这个branch开发，会导致sync问题。如下图所示，点击new branch，然后填入开发分支的名字（起一个有意义的名字，比如写adc驱动，名字就写adc-driver之类的名字），点击create branch即可
 
 ![newbranch](figures/newbranch.png)
 
@@ -63,7 +63,7 @@
 
 ![push](figures/push.png)
 
-commit之后可以推送到自己的远程仓库。
+commit之后可以推送到自己的远程仓库，在右上角点击push即可。
 
 ## 3. 正式pr
 
