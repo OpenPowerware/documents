@@ -105,7 +105,7 @@ OpenPowerware旨在开发针对电力电子控制的软件生态，目前是基�
 
 master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。transfer是master和openpowerware之间的桥梁，负责来回merge，由管理员手动完成。所以管理员的任务有三：
 
-（1）定期同步master并把更新merge进transfer和openpowerware；注意master不能直接merge进openpowerware必须以transfer为中介。
+（1）定期同步master并把更新merge进transfer和openpowerware。
 
 （2）review pr，通过或者提出修改意见。
 
