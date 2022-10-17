@@ -23,7 +23,7 @@
 💡 目前我们的仓库共有三个主要的branch，分别是
 1. openpowerware，默认分支，用于开发者提交pr的分支
 2. master，不可pr，仅用于与rt-thread主仓同步
-3. upstream，不可pr，仅用于向rt-thread主仓提交pr
+3. transfer，不可pr，仅用于向rt-thread主仓提交pr
 
 </aside>
 
@@ -83,7 +83,7 @@ commit之后可以推送到自己的远程仓库，在右上角点击push即可�
 
 **有几点需要注意（敲黑板）：**
 
-**（1）pr只能从自己的branch发起，pr到openpowerware，即 userbranch → openpowerware。这里的userbranch不能与系统的branch（master，upstream，openpowerware）重名，否则merge的时候会出问题。**
+**（1）pr只能从自己的branch发起，pr到openpowerware，即 userbranch → openpowerware。这里的userbranch不能与系统的branch（master，transfer，openpowerware）重名，否则merge的时候会出问题。**
 
 **（2）openpowerware fork到自己的仓之后，可以用github网页上的sync功能与源仓同步。openpowerware这个branch即使在自己的仓也不能自己修改，否则sync的时候会出现冲突。**
 
@@ -103,10 +103,10 @@ OpenPowerware旨在开发针对电力电子控制的软件生态，目前是基�
 
 ![structure](figures/structure.png)
 
-master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。upstream是master和openpowerware之间的桥梁，负责来回merge，由管理员手动完成。所以管理员的任务有三：
+master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。transfer是master和openpowerware之间的桥梁，负责来回merge，由管理员手动完成。所以管理员的任务有三：
 
-（1）定期同步master并把更新merge进upstream和openpowerware；注意master不能直接merge进openpowerware必须以upstream为中介。
+（1）定期同步master并把更新merge进transfer和openpowerware；注意master不能直接merge进openpowerware必须以transfer为中介。
 
 （2）review pr，通过或者提出修改意见。
 
-（3）定期检查openpowerware，如果发现其中适合合并进rt-thread主仓的修改，则首先merge进upstream，并从upstream像rt-thread主仓的master提出pr。
+（3）定期检查openpowerware，如果发现其中适合合并进rt-thread主仓的修改，则首先merge进transfer，并从transfer向rt-thread主仓的master提出pr。
