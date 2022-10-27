@@ -20,14 +20,13 @@
 注意勾选copy the openpowerware branch only（其余分支是管理员分支，不需要fork）。随后点击create fork。这里对我们仓库的分支作以下说明：
 
 <aside>
-💡 目前我们的仓库共有三个主要的branch，分别是
+💡 目前我们的仓库共有两个主要的branch，分别是
 1. openpowerware，默认分支，用于开发者提交pr的分支
 2. master，不可pr，仅用于与rt-thread主仓同步
-3. transfer，不可pr，仅用于向rt-thread主仓提交pr
 
 </aside>
 
-由于后面三个都是由管理员负责管理的branch，所以大家在fork的时候只fork默认的分支就好。
+大家在fork的时候只fork默认的分支(openpowerware)就好，其他的分支由管理员维护。
 
 熟悉git的同学已经不用看后面的教程了，直接开搞。对于不熟悉git操作的同学，请看下面的步骤。
 
@@ -83,14 +82,16 @@ commit之后可以推送到自己的远程仓库，在右上角点击push即可�
 
 **有几点需要注意（敲黑板）：**
 
-**（1）pr只能从自己的branch发起，pr到openpowerware，即 userbranch → openpowerware。这里的userbranch不能与系统的branch（master，transfer，openpowerware）重名，否则merge的时候会出问题。**
+**（1）pr只能从自己的branch发起，pr到openpowerware，即 userbranch → openpowerware。这里的userbranch不能与系统的branch（master，openpowerware）重名，否则merge的时候会出问题。**
 
 **（2）openpowerware fork到自己的仓之后，可以用github网页上的sync功能与源仓同步。openpowerware这个branch即使在自己的仓也不能自己修改，否则sync的时候会出现冲突。**
 
-**（3）pr前需要在硬件上完成测试，并遵从rt-thread的[代码规范](https://github.com/OpenPowerware/rt-thread/blob/openpowerware/documentation/contribution_guide/coding_style_cn.md)。
+**（3）PR通过之后，需要把发起PR的branch删除。以后有其他的PR，需要首先将openpowerware与主仓同步(使用github网站上的sync功能)，然后从openpowerware新建一个branch，在branch上修改并PR，这样可以使所有改动的历史顺序清晰，否则merge的时候会有conflict。**
+
+**（4）pr前需要在硬件上完成测试，并遵从rt-thread的[代码规范](https://github.com/OpenPowerware/rt-thread/blob/openpowerware/documentation/contribution_guide/coding_style_cn.md)。
 可以用这个[formatting tool](https://github.com/mysterywolf/formatting)来自动格式化。注意只需要format改动的代码文件，没有改动的文件不需要formmat，否则会导致copyright栏的时间出错。**
 
-**（4）以上clone操作均基于linux系统。如果你使用linux，请直接用git命令行操作。**
+**（5）以上git操作均基于linux系统。如果你使用linux，请直接用git命令行操作。**
 
 
 好了，以上就是整个pr流程了。
@@ -103,10 +104,12 @@ OpenPowerware旨在开发针对电力电子控制的软件生态，目前是基�
 
 ![structure](figures/structure.png)
 
-master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。transfer是master和openpowerware之间的桥梁，负责来回merge，由管理员手动完成。所以管理员的任务有三：
+master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。transfer是一个临时的branch，将openpowerware中适合合并到主仓的代码拣选出来，并由此向主仓PR。向主仓的PR通过之后，需要把transfer删除，之后有PR再新建。transfer也可以使用不同的名字，由管理员自行决定。
 
-（1）定期同步master并把更新merge进transfer和openpowerware。
+总结一下，管理员的任务有三：
+
+（1）定期同步master并把更新merge进openpowerware。
 
 （2）review pr，通过或者提出修改意见。
 
-（3）定期检查openpowerware，如果发现其中适合合并进rt-thread主仓的修改，则首先merge进transfer，并从transfer向rt-thread主仓的master提出pr。
+（3）定期检查openpowerware，如果发现其中适合合并进rt-thread主仓的修改，则通过transfer向rt-thread主仓的master提出pr。
