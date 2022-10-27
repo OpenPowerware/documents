@@ -104,7 +104,7 @@ OpenPowerware旨在开发针对电力电子控制的软件生态，目前是基�
 
 ![structure](figures/structure.png)
 
-master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。transfer是一个临时的branch，将openpowerware中适合合并到主仓的代码拣选出来，并由此向主仓PR。向主仓的PR通过之后，需要把transfer删除，之后有PR再新建。transfer也可以使用不同的名字，由管理员自行决定。
+master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我们自己的主branch，负责接收pr。transfer是一个临时的branch，将openpowerware中适合合并到主仓的代码筛选(sift)出来，并由此向主仓PR。具体的操作方式为：(i)从master新建分支transfer；(ii)比较openpowerware和master生成patch，并将patch应用于transfer；(iii)在transfer中删除不适合向主仓pr的文件，并commit；(iv)从transfer向主仓提出PR。向主仓的PR通过之后，需要把transfer删除，之后有PR再新建。transfer也可以使用不同的名字，由管理员自行决定。
 
 总结一下，管理员的任务有三：
 
@@ -113,3 +113,5 @@ master是rt-thread主仓的影子，负责和主仓同步。openpowerware是我�
 （2）review pr，通过或者提出修改意见。
 
 （3）定期检查openpowerware，如果发现其中适合合并进rt-thread主仓的修改，则通过transfer向rt-thread主仓的master提出pr。
+
+（4）维护一个.gitignore列表，其中记录openpowerware中不适合向主仓同步的文件和目录，以指导sift。这个列表保存在documents仓rt-thread/sift目录下，需要的时候复制到transfer的.gitignore以筛除不需要commit的文件。注意所有不适合同步到主仓的代码需要写在单独的文件里，不要跟主仓本身的文件混在一起。
